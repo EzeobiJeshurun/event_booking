@@ -28,14 +28,14 @@ export const StyledCardMedia = styled(CardMedia)`
   border-radius: 50%;
   margin: ${(props) => props.theme.spacing(2)}px;
   box-sizing: border-box;
-  @media (min-width:${(props) => props.theme.breakpoints.between('770','900')}) {
-    min-height: ${(props) => props.theme.spacing(22.5)}px;
+  @media (mix-width: ${(props) => props.theme.breakpoints.down('770')}) {
+    min-height: ${(props) => props.theme.spacing(20.5)}px;
   } 
 `;
 
 export const StyledContent = styled(CardContent)`
 padding: ${(props) => props.theme.spacing(3)}px;
-@media (min-width: ${(props) => props.theme.breakpoints.between('770','1000')}) {
+@media (min-width: ${(props) => props.theme.breakpoints.down('770')}) {
     min-width: ${(props) => props.theme.spacing(3)}px;
 }
 `;

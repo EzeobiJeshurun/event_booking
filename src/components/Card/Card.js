@@ -23,6 +23,12 @@ const Card = ({ userImage, email, firstName, lastName, id}) => {
     );
 }
  
-Card.propTypes = {};
+Card.propTypes = {
+  id: PropTypes.number,
+  email: PropTypes.string,
+  userImage: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string
+};
  
 export default memo(Card);

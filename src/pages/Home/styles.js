@@ -5,6 +5,7 @@ export const StyledGridContainer = styled(Grid)`
   background-color: ${(props) => props.theme.palette.grey.dark};
   width: 100%;
   height: 100%;
+  margin-top:  ${(props) => props.theme.spacing(4)}px;
 `;
 
 export const StyledGridItem = styled(Grid)`
@@ -14,4 +15,9 @@ export const StyledGridItem = styled(Grid)`
  flex-direction: row;
  justify-content: center;
  align-items: center;
+`;
+
+export const NothingFound = styled.div`
+  width: 100%
+  padding-top: ${(props) => props.theme.spacing(8)}px;
 `;

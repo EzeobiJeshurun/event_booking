@@ -1,12 +1,16 @@
-import React, { Fragment, memo } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useReducer, useEffect, useCallback, useState, useRef, memo } from 'react';
 import Card from '../../components/Card';
 import Navbar from '../../components/Navbar';
-import { StyledGridContainer, StyledGridItem } from './styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { StyledGridContainer, StyledGridItem, NothingFound } from './styles';
 
 const Home = () => {
+    const [profiles, setProfiles] = useState([]);
+    const [showProfiles, setShowProfiles] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
+    const isMounted = useRef(true);
 
-    const mockData = [
+    const mockData = useCallback(()=> ([
         {
             "id": 1,
             "email": "george.bluth@reqres.in",
@@ -91,23 +95,83 @@ const Home = () => {
             "last_name": "Howell",
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg"
         }
-    ];
+    ]), []);
 
-    const users = (mockData.map((user) => (
+    useEffect(() => {
+        setShowProfiles(mockData);
+        setProfiles(mockData);
+        
+        return () => isMounted.current = false;
+    }, [isMounted, mockData]);
+
+    const reducer = (profiles, action) => {
+        switch (action.type) {
+          case "all":
+            return showProfiles;
+
+          case "search":
+            if (searchValue.length === 0) {
+               return showProfiles
+            }
+            
+            const searchValueToLowerCase = searchValue.toLowerCase();
+            const filteredProfiles = showProfiles.filter((item) => {
+                  if (
+                    item.first_name.toLowerCase().includes(searchValueToLowerCase) || 
+                  item.last_name.toLowerCase().includes(searchValueToLowerCase) 
+                  ) {
+                    return true;
+                  }
+                  return false;
+                })
+    
+            return filteredProfiles;
+    
+          default:
+            return showProfiles;
+        }
+      };
+
+    const [state, dispatch] = useReducer(reducer, profiles); 
+
+      useEffect(() => {
+        if (isMounted.current === true && profiles.length > 0) {
+          if (searchValue.length === 0) {
+            dispatch({ type: "all" });
+          }
+          if (searchValue.length !== 0) {
+            dispatch({ type: "search" });
+          }
+        }
+      }, [isMounted, searchValue, profiles]);
+
+      const handleFilter = (event) => {
+        setSearchValue(event.currentTarget.value);
+        if (isMounted.current) {
+          dispatch({
+            type: "search",
+          });
+        }
+      };
+
+    const users = state.length > 0 ? (state.map((user) => (
         <StyledGridItem key={user.id} item xs={12} sm={4} md={3}>
          <Card userImage={user.avatar}  email={user.email} firstName={user.first_name} lastName={user.last_name} id={user.id} />
-        </StyledGridItem>)))
+        </StyledGridItem>))) : (<StyledGridItem xs={12} item><NothingFound>No Profile found</NothingFound></StyledGridItem>);
 
     return (
        <Fragment>
-        <Navbar /> 
+        <Navbar valueSearch={searchValue} onChangeSearch={handleFilter}/> 
          <StyledGridContainer container spacing={0}>
-            {users}
+            {profiles.length > 0 ? users : (
+              <StyledGridItem>
+                <NothingFound>
+                  <CircularProgress/>
+                </NothingFound>
+              </StyledGridItem>)}
          </StyledGridContainer>
         </Fragment>
     );
 }
- 
-Home.propTypes = {};
  
 export default memo(Home);

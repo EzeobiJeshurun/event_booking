@@ -1,17 +1,22 @@
 import React, { Fragment, memo } from 'react';
 import PropTypes from 'prop-types';
-import { StyledAppBar, StyledToolbar } from './styles';
+import AppBar from '@material-ui/core/AppBar';
+import Input from '../Input';
+import { StyledToolbar } from './styles';
  
-const Navbar = () => {
+const Navbar = ({ valueSearch, onChangeSearch }) => {
     return (
         <Fragment>
-            <StyledAppBar>
-              <StyledToolbar></StyledToolbar>
-            </StyledAppBar>
+            <AppBar>
+              <StyledToolbar><Input value={valueSearch} onChange={onChangeSearch}/></StyledToolbar>
+            </AppBar>
         </Fragment>
     );
 }
  
-Navbar.propTypes = {};
+Navbar.propTypes = {
+    valueSearch : PropTypes.string,
+    onChangeSearch: PropTypes.func,
+};
  
-export default Navbar;
+export default memo(Navbar);

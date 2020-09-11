@@ -3,6 +3,7 @@ import Card from '../../components/Card';
 import Navbar from '../../components/Navbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { StyledGridContainer, StyledGridItem, NothingFound } from './styles';
+import axios from 'axios';
 
 const Home = () => {
     const [profiles, setProfiles] = useState([]);
@@ -156,8 +157,18 @@ const Home = () => {
 
     const users = state.length > 0 ? (state.map((user) => (
         <StyledGridItem key={user.id} item xs={12} sm={4} md={3}>
-         <Card userImage={user.avatar}  email={user.email} firstName={user.first_name} lastName={user.last_name} id={user.id} />
-        </StyledGridItem>))) : (<StyledGridItem xs={12} item><NothingFound>No Profile found</NothingFound></StyledGridItem>);
+         <Card 
+          userImage={user.avatar}  
+          email={user.email} 
+          firstName={user.first_name} 
+          lastName={user.last_name} 
+          id={user.id} 
+        />
+        </StyledGridItem>))) : (
+          <StyledGridItem xs={12} item>
+           <NothingFound>No Profile found</NothingFound>
+          </StyledGridItem>
+        );
 
     return (
        <Fragment>
@@ -166,7 +177,7 @@ const Home = () => {
             {profiles.length > 0 ? users : (
               <StyledGridItem>
                 <NothingFound>
-                  <CircularProgress/>
+                  <CircularProgress thickness={2} size={300}/>
                 </NothingFound>
               </StyledGridItem>)}
          </StyledGridContainer>

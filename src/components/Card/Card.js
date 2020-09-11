@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Card = ({ userImage, email, firstName, lastName, id}) => {
     return (
         <Fragment>
-         <StyledCard component={Link} to={`/shedule/${id}`} elevation={3} >
+         <StyledCard component={Link} to={`/schedule/${id}`} elevation={3} >
            <StyledCardActionArea>
              <StyledCardMedia image={userImage} title="user profile image" />
              <StyledContent>

@@ -17,7 +17,11 @@ const theme = createMuiTheme({
         grey: {
             main: '#F9FAFB',
             dark: '#F3F5F7',
-            special: '#C1C0f0',
+            special: '#829baf',
+        },
+        color: {
+            white: '#fff',
+            green: '#2e7d32',
         }
     },
     typography: {

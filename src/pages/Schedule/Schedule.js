@@ -1,24 +1,34 @@
 import React, {Fragment, useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-import { GridContainer, GridItem, TimePickerGrid, PickerContainer, ScheduleTitle } from './styles';
+import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import { 
+  GridContainer, 
+  GridItem, 
+  TimePickerGrid, 
+  PickerContainer, 
+  ScheduleTitle, 
+  IconHome 
+} from './styles';
 import Card from '../../components/Card';
 import TimePickerTab from '../../components/TimePickerTab';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import dayjs from 'dayjs';
  
 const Schedule = () => {
 
   useEffect(() => {
       
-     /* async function fetchData() {
+     
+    
+     /*async function fetchData() {
         // You can await here
         const  result = await axios.get(
-          "http://localhost:5000/schedule",
+          "http://localhost:5000/schedule/time/12"
         );
         // ...
-        console.log("hello");
         console.log(result);
-        console.log("hello");
       }
       fetchData();*/
 
@@ -36,14 +46,15 @@ const Schedule = () => {
 
 const displayPicker = dates.map((hour) => (
    <TimePickerGrid key={hour} xs={4} sm={3} md={2} item>
-     <TimePickerTab text={hour}/>
+     <TimePickerTab text={hour} availability={true} />
    </TimePickerGrid>
   ));
 
     return (
         <Fragment>
           <ScheduleTitle>
-            Meet us today, pick a time
+            <div>Meet us today, pick a time</div>
+            <IconButton component={Link} to={'/'}><IconHome/></IconButton>
           </ScheduleTitle>
           <GridContainer container>
             <GridItem xs={12} sm={4} md={3} item>

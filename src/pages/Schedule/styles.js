@@ -1,11 +1,20 @@
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
+import styled from 'styled-components';
+import Grid from '@material-ui/core/Grid';
+import HomeIcon from '@material-ui/icons/Home';
 
 
 export const GridContainer = styled(Grid)`
   background-color: ${(props) => props.theme.palette.grey.dark};
   width: 100%;
   height: 100%;
+`;
+
+export const IconHome = styled(HomeIcon)`
+ color: ${(props) => props.theme.palette.primary.dark};
+ font-size: ${(props) => props.theme.spacing(4)}px;
+ ${(props) => props.theme.breakpoints.down('550')} {
+  font-size: ${(props) => props.theme.spacing(2)}px;
+}
 `;
 
 export const GridItem = styled(Grid)`
@@ -17,7 +26,7 @@ export const GridItem = styled(Grid)`
 `;
 
 export const TimePickerGrid = styled(Grid)`
-  backgroud:  ${(props) => props.theme.palette.color.white};
+  backgroud: ${(props) => props.theme.palette.color.white};
   display: flex;
   flex-direction: row;
   justify-content: center;

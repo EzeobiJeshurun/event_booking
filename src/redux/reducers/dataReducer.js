@@ -17,9 +17,10 @@ export default function (state= initialState, actions){
              };
          
         case UPDATE_USERS:
+            const activeUsers = state.currentUsers
             return {
                 ...state,
-                currentUsers: [...currentUsers, ...actions.payload.data],
+                currentUsers: [...activeUsers, ...actions.payload.data],
             };
 
         case ERRORS:

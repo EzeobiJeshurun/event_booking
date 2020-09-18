@@ -7,12 +7,15 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Schedule from './pages/Schedule';
 import Home from './pages/Home';
 import './App.css';
+import {Provider} from 'react-redux';
+import store from './redux/store';
 
 function App() {
   return (
     <StylesProvider injectFirst>
       <ThemeProvider theme={theme}>
         <MuiThemeProvider theme={theme}>
+          <Provider store={store} >
             <div className="App">
               <Router>
                 <Switch>
@@ -21,6 +24,7 @@ function App() {
                 </Switch>
               </Router>
             </div>
+            </Provider>  
          </MuiThemeProvider>
        </ThemeProvider>
     </StylesProvider>

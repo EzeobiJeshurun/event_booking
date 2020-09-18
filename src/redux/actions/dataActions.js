@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //remember to change all routes
 export const getUsers = ()=>(dispatch)=>{
-    axios.get('/weshout')
+    axios.get('https://reqres.in/api/users')
     .then((res)=>{
         dispatch({
             type: SET_USERS,
@@ -28,8 +28,8 @@ export const getUsers = ()=>(dispatch)=>{
 
 };
 
-export const updateUsers = ()=>(dispatch)=>{
-    axios.get('/weshout')
+export const updateUsers = (number)=>(dispatch)=>{
+    axios.get(`https://reqres.in/api/users?page=${number}`)
     .then((res)=>{
         dispatch({
             type: UPDATE_USERS,
@@ -54,8 +54,8 @@ export const updateUsers = ()=>(dispatch)=>{
 
 };
 
-export const getSchedules = ()=>(dispatch)=>{
-    axios.get('/weshout')
+export const getSchedule = (id)=>(dispatch)=>{
+    axios.get(`/schedule/time/${id}`)
     .then((res)=>{
         dispatch({
             type: SET_SCHEDULES,
@@ -80,8 +80,8 @@ export const getSchedules = ()=>(dispatch)=>{
 
 };
 
-export const updateSchedules = (scheduleUpdate)=>(dispatch)=>{
-    axios.post('/weshout', scheduleUpdate)
+export const updateSchedules = (id,scheduleUpdate)=>(dispatch)=>{
+    axios.put(`/schedule/${id}`, scheduleUpdate)
     .then((res)=>{
         dispatch({
             type: UPDATE_SCHEDULES,

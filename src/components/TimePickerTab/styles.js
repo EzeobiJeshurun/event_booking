@@ -11,6 +11,7 @@ export const PickerTab = styled(Paper)`
   box-sizing: border-box;
   width: 100%;
   height: 90%;
+  min-height: ${(props) => props.theme.spacing(4)}px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,6 +20,21 @@ export const PickerTab = styled(Paper)`
   &:hover {
     background:  ${(props) => props.theme.palette.primary.light};
   };
+`;
+
+export const DisabledPickerTab = styled(Paper)`
+  border-raduis: ${(props) => props.theme.spacing(1)}px;
+  background: ${(props) => props.theme.palette.grey.special};
+  margin: ${(props) => props.theme.spacing(0.5)}px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 90%;
+  min-height: ${(props) => props.theme.spacing(4)}px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const TextContainer = styled(Typography)`
@@ -30,9 +46,10 @@ export const TextContainer = styled(Typography)`
 
 export const ModalContent = styled.div`
   display: flex;
-  flex-direction: center;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  align-content: center;
   color:  ${(props) => props.theme.palette.grey.special};
   ${(props) => props.theme.breakpoints.down('550')} {
     font-size: ${(props) => props.theme.spacing(1.5)}px;

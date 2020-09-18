@@ -18,6 +18,11 @@ export const StyledGridItem = styled(Grid)`
 `;
 
 export const NothingFound = styled.div`
-  width: 100%
-  padding-top: ${(props) => props.theme.spacing(8)}px;
+  width: 100%;
+  padding-top: ${(props) => props.theme.spacing(3)}px;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  margin-right: auto;
+  margin-left: auto;
 `;

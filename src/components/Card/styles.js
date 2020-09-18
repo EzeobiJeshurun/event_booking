@@ -23,21 +23,15 @@ export const StyledCardActionArea = styled(CardActionArea)`
 `;
 
 export const StyledCardMedia = styled(CardMedia)`
-  min-height: ${(props) => props.theme.spacing(31.25)}px;;
+  min-height: ${(props) => props.theme.spacing(25.25)}px;;
   object-fit: cover;
   border-radius: 50%;
   margin: ${(props) => props.theme.spacing(2)}px;
   box-sizing: border-box;
-  @media (mix-width: ${(props) => props.theme.breakpoints.down('770')}) {
-    min-height: ${(props) => props.theme.spacing(20.5)}px;
-  } 
 `;
 
 export const StyledContent = styled(CardContent)`
 padding: ${(props) => props.theme.spacing(3)}px;
-@media (min-width: ${(props) => props.theme.breakpoints.down('770')}) {
-    min-width: ${(props) => props.theme.spacing(3)}px;
-}
 `;
 
 export const StyledTypography = styled(Typography)`

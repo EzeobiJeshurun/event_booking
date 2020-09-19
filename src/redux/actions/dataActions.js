@@ -1,4 +1,15 @@
-import { SET_SCHEDULES, SET_USERS, ERRORS, NETWORK_ERROR, UPDATE_SCHEDULES, UPDATE_USERS } from '../types';
+import { 
+    SET_SCHEDULES, 
+    SET_SCHEDULE, 
+    SET_USERS, 
+    ERRORS, 
+    NETWORK_ERROR, 
+    UPDATE_SCHEDULES, 
+    UPDATE_SCHEDULE, 
+    UPDATE_USERS,
+    LOADING,
+    } from '../types';
+
 import axios from 'axios';
 
 //remember to change all routes
@@ -58,7 +69,7 @@ export const getSchedule = (id)=>(dispatch)=>{
     axios.get(`/schedule/time/${id}`)
     .then((res)=>{
         dispatch({
-            type: SET_SCHEDULES,
+            type: SET_SCHEDULE,
             payload: res.data
         });
     })
@@ -80,11 +91,12 @@ export const getSchedule = (id)=>(dispatch)=>{
 
 };
 
-export const updateSchedules = (id,scheduleUpdate)=>(dispatch)=>{
+export const updateSchedule = (id,scheduleUpdate)=>(dispatch)=>{
+    dispatch({type: LOADING});
     axios.put(`/schedule/${id}`, scheduleUpdate)
     .then((res)=>{
         dispatch({
-            type: UPDATE_SCHEDULES,
+            type: UPDATE_SCHEDULE,
             payload: scheduleUpdate,
         });
     })

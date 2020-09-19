@@ -57,3 +57,4 @@ export const ScheduleTitle = styled.div`
     font-size: ${(props) => props.theme.spacing(2)}px;
 }
 `;
+

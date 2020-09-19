@@ -107,11 +107,11 @@ const Home = ({ data, getUsers }) => {
     }, [fetchUsers]);
 
     useEffect(() => {
-        setShowProfiles(mockData);
-        setProfiles(mockData);
+        setShowProfiles(currentUsers);
+        setProfiles(currentUsers);
         
         return () => isMounted.current = false;
-    }, [isMounted, mockData]);
+    }, [isMounted, currentUsers]);
 
     const reducer = (profiles, action) => {
         switch (action.type) {
@@ -180,16 +180,14 @@ const Home = ({ data, getUsers }) => {
         return profiles;
       }, [searchValue, profiles]);
 
-      console.log("Search works");
-      console.log(ourUsers);
-      console.log("Search works");
+  
       const handleFilter = (event) => {
         setSearchValue(event.currentTarget.value);
-        if (isMounted.current) {
+      /*  if (isMounted.current) {
           dispatch({
             type: "search",
           });
-        }
+        }*/
       };
 
     const users = ourUsers.length > 0 ? (ourUsers.map((user) => (

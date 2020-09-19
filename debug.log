@@ -1,0 +1,30 @@
+[0918/222116.273:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222116.576:ERROR:exception_snapshot_win.cc(99)] thread ID 4048 not found in process
+[0918/222117.656:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222117.656:ERROR:exception_snapshot_win.cc(99)] thread ID 44 not found in process
+[0918/222117.657:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222117.657:ERROR:exception_snapshot_win.cc(99)] thread ID 5420 not found in process
+[0918/222117.870:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222117.870:ERROR:exception_snapshot_win.cc(99)] thread ID 1452 not found in process
+[0918/222117.990:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222117.990:ERROR:exception_snapshot_win.cc(99)] thread ID 4064 not found in process
+[0918/222118.029:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222118.029:ERROR:exception_snapshot_win.cc(99)] thread ID 3276 not found in process
+[0918/222118.132:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222118.132:ERROR:exception_snapshot_win.cc(99)] thread ID 2548 not found in process
+[0918/222118.324:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222118.324:ERROR:exception_snapshot_win.cc(99)] thread ID 2904 not found in process
+[0918/222118.622:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222118.622:ERROR:exception_snapshot_win.cc(99)] thread ID 2944 not found in process
+[0918/222119.022:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222119.022:ERROR:exception_snapshot_win.cc(99)] thread ID 3324 not found in process
+[0918/222119.038:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222119.038:ERROR:exception_snapshot_win.cc(99)] thread ID 3340 not found in process
+[0918/222119.041:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222119.041:ERROR:exception_snapshot_win.cc(99)] thread ID 4328 not found in process
+[0918/222119.774:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222119.774:ERROR:exception_snapshot_win.cc(99)] thread ID 3964 not found in process
+[0918/222119.992:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[0918/222119.992:ERROR:exception_snapshot_win.cc(99)] thread ID 3320 not found in process
+[0918/222119.774:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0918/222119.992:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)

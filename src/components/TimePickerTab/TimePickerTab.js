@@ -15,7 +15,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
-const TimePickerTab = ({ text, availability, userId, day, schedules }) => {
+const TimePickerTab = ({ text, availability, userId, time, schedule, handleUpdate }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -25,13 +25,13 @@ const TimePickerTab = ({ text, availability, userId, day, schedules }) => {
         setOpen(false);
     }
 
-    const handleSubmit = (id, day) => {
-      schedules.dates.forEach((event) => {
-         if(event.time === day ){
+    const handleSubmit = (id, time, schedule) => {
+      schedule.dates.forEach((event) => {
+         if(event.time === time ){
             event.availability = false;
          };
       });
-
+      handleUpdate(id, schedule);
     };
 
     const tab = availability ? (
@@ -73,7 +73,7 @@ const TimePickerTab = ({ text, availability, userId, day, schedules }) => {
                  variant="outlined"
                  onClick={() => {
                     handleClose();
-                    handleSubmit(userId);
+                    handleSubmit(userId, time, schedule);
                 }}  
                 >
                  Confirm

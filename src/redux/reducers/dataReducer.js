@@ -1,10 +1,23 @@
-import { SET_SCHEDULES, CLEAR_ERRORS, SET_USERS, ERRORS, NETWORK_ERROR, UPDATE_SCHEDULES, UPDATE_USERS } from '../types';
+import { 
+    SET_SCHEDULES,
+    SET_SCHEDULE, 
+    CLEAR_ERRORS, 
+    SET_USERS, 
+    ERRORS, 
+    NETWORK_ERROR, 
+    UPDATE_SCHEDULES,
+    UPDATE_SCHEDULE, 
+    UPDATE_USERS,
+    LOADING,
+    } from '../types';
 
 const initialState = {
     error : false,
     currentUsers: [],
-    schedule: [],
+    schedules: [],
     networkError: false,
+    schedule: {},
+    loading: true,
 };
 
 
@@ -14,6 +27,7 @@ export default function (state= initialState, actions){
              return {
                  ...state,
                  currentUsers: actions.payload.data,
+                 loading: false,
              };
          
         case UPDATE_USERS:
@@ -21,27 +35,46 @@ export default function (state= initialState, actions){
             return {
                 ...state,
                 currentUsers: [...activeUsers, ...actions.payload.data],
+                loading: false,
             };
 
         case ERRORS:
             return {
                 ...state,
                 error: true,
+                loading: false,
             }; 
             
         
         case UPDATE_SCHEDULES:    
-                let index = state.schedule.findIndex(info=> info.id === actions.payload.id);
-                state.schedule[index] = actions.payload;
+                let index = state.schedules.findIndex(info=> info.id === actions.payload.id);
+                state.schedules[index] = actions.payload;
                 return {
                     ...state,
+                    loading: false,
                 };
 
        case SET_SCHEDULES:     
             return {
                 ...state,
-                schedule: actions.payload.data,
+                schedules: actions.payload.data,
+                loading: false,
               };
+
+        case UPDATE_SCHEDULE:    
+                
+                return {
+                    ...state,
+                    schedule: actions.payload,
+                    loading: false
+                };
+
+       case SET_SCHEDULE:     
+            return {
+                ...state,
+                schedule: actions.payload.data,
+                loading: false,
+              };      
 
         case CLEAR_ERRORS:
 
@@ -49,13 +82,21 @@ export default function (state= initialState, actions){
                 ...state,
                 error: false,
                 networkError: false,
+                loading: false,
             };
 
         case NETWORK_ERROR:
             return {
                 ...state,
                 networkError: true,
+                loading: false,
             };
+
+        case LOADING: 
+           return {
+            ...state,
+            loading: true,
+          }    
         
         default:   
             return state;

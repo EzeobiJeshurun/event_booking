@@ -66,7 +66,7 @@ export const updateUsers = (number)=>(dispatch)=>{
 };
 
 export const getSchedule = (id)=>(dispatch)=>{
-    axios.get(`/schedule/time/${id}`)
+    axios.get(`https://hourly-schedule.herokuapp.com/schedule/time/${id}`)
     .then((res)=>{
         dispatch({
             type: SET_SCHEDULE,
@@ -93,7 +93,7 @@ export const getSchedule = (id)=>(dispatch)=>{
 
 export const updateSchedule = (id,scheduleUpdate)=>(dispatch)=>{
     dispatch({type: LOADING});
-    axios.put(`/schedule/${id}`, scheduleUpdate)
+    axios.put(`https://hourly-schedule.herokuapp.com/schedule/${id}`, scheduleUpdate)
     .then((res)=>{
         dispatch({
             type: UPDATE_SCHEDULE,

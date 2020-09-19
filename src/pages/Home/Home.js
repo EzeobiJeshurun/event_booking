@@ -4,11 +4,12 @@ import Navbar from '../../components/Navbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { StyledGridContainer, StyledGridItem, NothingFound } from './styles';
 import {connect} from 'react-redux';
-import { getUsers } from '../../redux/actions/dataActions';
+import { getUsers, updateUsers } from '../../redux/actions/dataActions';
 
 const Home = ({ data, getUsers }) => {
     const currentUsers  = data.currentUsers;
     const fetchUsers = getUsers;
+    const addUsers = updateUsers;
 
     const [profiles, setProfiles] = useState([]);
     const [showProfiles, setShowProfiles] = useState([]);
@@ -109,9 +110,12 @@ const Home = ({ data, getUsers }) => {
     useEffect(() => {
         setShowProfiles(currentUsers);
         setProfiles(currentUsers);
+        if (currentUsers.lenth > 0 && currentUsers.lenth < 10) {
+           addUser(1);
+        }
         
         return () => isMounted.current = false;
-    }, [isMounted, currentUsers]);
+    }, [isMounted, currentUsers, addUser]);
 
     const reducer = (profiles, action) => {
         switch (action.type) {
@@ -226,6 +230,7 @@ const mapStateToProps = (state)=>({
 
 const MapActionsToProp={
   getUsers,
+  updateUsers,
   
 }
 

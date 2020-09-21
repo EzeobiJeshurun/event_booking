@@ -1,4 +1,4 @@
-import React, { Fragment, useReducer, useEffect, useState, useMemo, useRef } from 'react';
+import React, { Fragment, useEffect, useState, useMemo, useRef } from 'react';
 import Card from '../../components/Card';
 import Navbar from '../../components/Navbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -44,7 +44,7 @@ const Home = ({ data:{ currentUsers, weekdays }, getUsers, updateUsers }) => {
 
           const searchValueToLowerCase = searchValue.trim().toLowerCase();
             const filteredProfiles = showProfiles.filter((item) => {
-                  const name = item.first_name + item.last_name;
+                  
                   if (
                     (item.first_name.trim().toLowerCase().includes(searchValueToLowerCase) &&
                     item.last_name.trim().toLowerCase().includes(searchValueToLowerCase)) || 

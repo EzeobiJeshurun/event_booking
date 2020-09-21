@@ -43,7 +43,7 @@ const Schedule = (props) => {
        return user;
     }
   
-    },[currentUsers, fetchUsers, addUsers, profileId]);
+    },[currentUsers, addUsers, profileId]);
 
   useEffect(() => {
 
@@ -57,9 +57,12 @@ const Schedule = (props) => {
     
   }, [ profileId, profile, fetchProfileSchedule]);
   
-  useEffect(() => { 
-   fetchUsers();
-  }, [fetchUsers]);
+  useEffect(() => {
+    if(currentUsers.length < 1) {
+       fetchUsers();
+    }
+  
+  }, [fetchUsers, currentUsers.length]);
 
   useEffect(() => {
       if (schedule) {

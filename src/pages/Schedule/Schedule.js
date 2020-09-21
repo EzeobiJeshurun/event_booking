@@ -1,5 +1,4 @@
 import React, {Fragment, useEffect, useState, useMemo, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -13,7 +12,6 @@ import {
 } from './styles';
 import Card from '../../components/Card';
 import TimePickerTab from '../../components/TimePickerTab';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import { updateSchedule, getSchedule, getUsers, updateUsers } from '../../redux/actions/dataActions';
@@ -45,7 +43,7 @@ const Schedule = (props) => {
        return user;
     }
   
-    },[currentUsers, fetchUsers]);
+    },[currentUsers, fetchUsers, addUsers, profileId]);
 
   useEffect(() => {
 
@@ -116,9 +114,6 @@ const Schedule = (props) => {
         </Fragment>
     );
 }
- 
-Schedule.propTypes = {};
- 
 
 const mapStateToProps = (state)=>({
     data: state.data,

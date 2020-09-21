@@ -12,8 +12,7 @@ import {
 import Dialog from '@material-ui/core/Dialog';
 
 import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
+
 
 const TimePickerTab = ({ text, availability, userId, time, schedule, handleUpdate }) => {
     const [open, setOpen] = useState(false);
@@ -84,6 +83,13 @@ const TimePickerTab = ({ text, availability, userId, time, schedule, handleUpdat
     );
 }
  
-TimePickerTab.propTypes = {};
+TimePickerTab.propTypes = {
+  text : PropTypes.string,
+  availability: PropTypes.bool,
+  userId: PropTypes.number, 
+  time: PropTypes.string, 
+  schedule: PropTypes.array, 
+  handleUpdate: PropTypes.func, 
+};
  
 export default memo(TimePickerTab);

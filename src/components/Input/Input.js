@@ -1,6 +1,4 @@
 import React, { Fragment, memo } from 'react';
-import PropTypes from 'prop-types';
-import SearchIcon from '@material-ui/icons/Search';
 import { StyledInput, StyledSearchIcon } from './styles';
  
 const Input = ({...props}) => {
@@ -12,7 +10,5 @@ const Input = ({...props}) => {
         </Fragment>
     );
 }
- 
-Input.propTypes = {};
  
 export default memo(Input);

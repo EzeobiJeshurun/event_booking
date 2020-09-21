@@ -61,7 +61,7 @@ const Home = ({ data:{ currentUsers, weekdays }, getUsers, updateUsers }) => {
         }
 
         return profiles;
-      }, [searchValue, profiles]);
+      }, [searchValue, profiles, showProfiles]);
 
   
       const handleFilter = (event) => {

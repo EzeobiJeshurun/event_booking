@@ -6,8 +6,8 @@ import { StyledGridContainer, StyledGridItem, NothingFound } from './styles';
 import {connect} from 'react-redux';
 import { getUsers, updateUsers } from '../../redux/actions/dataActions';
 
-const Home = ({ data, getUsers, updateUsers }) => {
-    const currentUsers  = data.currentUsers;
+const Home = ({ data:{ currentUsers, weekdays }, getUsers, updateUsers }) => {
+
     const fetchUsers = getUsers;
     const addUsers = updateUsers;
 

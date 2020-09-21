@@ -17,12 +17,15 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import { updateSchedule, getSchedule, getUsers, updateUsers } from '../../redux/actions/dataActions';
- 
+import weekday from 'dayjs/plugin/weekday'
+dayjs.extend(weekday);
+
 const Schedule = (props) => {
-  const {data: { schedule, loading, currentUsers }, updateSchedule, getSchedule, getUsers } = props;
+  const {data: { schedule, loading, currentUsers, weekdays }, updateSchedule, getSchedule, getUsers } = props;
   const match = props.match;
   const fetchUsers = getUsers;
   const addUsers = updateUsers;
+  const now = dayjs();
   const [userSchedule, setUserSchedule] = useState({});
   const [newProfile, setNewProfile] = useState([]);
   const update = useCallback(updateSchedule,[schedule]);
@@ -89,7 +92,7 @@ const Schedule = (props) => {
     return (
         <Fragment>
           <ScheduleTitle>
-            <div>Meet us today, pick a time</div>
+            <div>Meet us today {weekdays[now.weekday()]}, pick a time</div>
             <IconButton component={Link} to={'/'}><IconHome/></IconButton>
           </ScheduleTitle>
           <GridContainer container>

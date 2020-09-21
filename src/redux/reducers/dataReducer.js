@@ -18,6 +18,7 @@ const initialState = {
     networkError: false,
     schedule: {},
     loading: true,
+    weekdays: [ "Sunday","Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
 };
 
 

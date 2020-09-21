@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState, useCallback } from 'react';
+import React, {Fragment, useEffect, useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,55 +13,67 @@ import {
 } from './styles';
 import Card from '../../components/Card';
 import TimePickerTab from '../../components/TimePickerTab';
-import {connect} from 'react-redux';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
-import { updateSchedule, getSchedule } from '../redux/actions/dataActions';
+import { updateSchedule, getSchedule, getUsers, updateUsers } from '../../redux/actions/dataActions';
  
 const Schedule = (props) => {
-  const {data: { schedule, loading, currentUsers }, updateSchedule, getSchedule } = props;
+  const {data: { schedule, loading, currentUsers }, updateSchedule, getSchedule, getUsers } = props;
+  const match = props.match;
+  const fetchUsers = getUsers;
+  const addUsers = updateUsers;
   const [userSchedule, setUserSchedule] = useState({});
   const [newProfile, setNewProfile] = useState([]);
   const update = useCallback(updateSchedule,[schedule]);
   const profileId = match.params.id;
+  
+  const fetchProfileSchedule = getSchedule;
+
+  const profile = useMemo(() => {
+    if (currentUsers.length > 0 && currentUsers.length < 10) {
+           addUsers(2);
+        }
+    if(currentUsers.length > 0) {
+       const idStringToNumber = Number(profileId);
+       const userIndex = currentUsers.findIndex(userDetails => userDetails.id === idStringToNumber);
+       const user = currentUsers[userIndex];
+
+       return user;
+    }
+  
+    },[currentUsers, fetchUsers]);
+
   useEffect(() => {
-      const fetchProfileSchedule = getSchedule;
-      const profile = currentUsers.find((userDetails) => userDetails.id === profileId);
-      setNewProfile(profile);
-      
-      fetchProfileSchedule(profileId);
-    
-     /*async function fetchData() {
-        // You can await here
-        const  result = await axios.get(
-          "http://localhost:5000/schedule/time/12"
-        );
-        // ...
-        console.log(result);
+
+      if (profile) {
+        setNewProfile(profile);
       }
-      fetchData();*/
-
-  }, [getSchedule, profileId, currentUsers]);
+      
+      if(profileId) {
+       fetchProfileSchedule(profileId);
+      }
+    
+  }, [ profileId, profile, fetchProfileSchedule]);
+  
+  useEffect(() => { 
+   fetchUsers();
+  }, [fetchUsers]);
 
   useEffect(() => {
-      
-     setUserSchedule(schedule)
-
+      if (schedule) {
+        setUserSchedule(schedule);
+      }
   }, [schedule]);
+  
+   const pickerLoading = (
+     <TimePickerGrid xs={12} item>
+       <CircularProgress thickness={2} size={50}/>
+     </TimePickerGrid>
+   );
 
-  const dates = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
-
-  const user = {
-    "id": 11,
-    "email": "george.edwards@reqres.in",
-    "first_name": "George",
-    "last_name": "Edwards",
-    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg"
-};
-
-   const displayPicker = userSchedule.length > 0 ?  userSchedule.dates.map((event) => (
-   <TimePickerGrid key={hour} xs={4} sm={3} md={2} item>
+   const displayPicker = userSchedule.id ?  userSchedule.dates.map((event) => (
+   <TimePickerGrid key={event.time} xs={4} sm={3} md={2} item>
      <TimePickerTab 
       text={event.time} 
       availability={event.availability} 
@@ -71,13 +83,8 @@ const Schedule = (props) => {
       handleUpdate ={update}
     />
    </TimePickerGrid>
-  )) : null;
+  )) : pickerLoading;
 
-   const pickerLoading = (
-     <TimePickerGrid xs={12} item>
-       <CircularProgress thickness={2} size={50}/>
-     </TimePickerGrid>
-   );
 
     return (
         <Fragment>
@@ -86,22 +93,22 @@ const Schedule = (props) => {
             <IconButton component={Link} to={'/'}><IconHome/></IconButton>
           </ScheduleTitle>
           <GridContainer container>
-          { userSchedule.length < 1? pickerLoading :
-            (<GridItem xs={12} sm={4} md={3} item>
+          { newProfile.length < 1? pickerLoading :
+            (<Fragment><GridItem xs={12} sm={4} md={3} item>
             <Card 
-              userImage={newProfile[0].avatar}  
-              email={newProfile[0].email} 
-              firstName={newProfile[0].first_name} 
-              lastName={newProfile[0].last_name} 
-              id={newProfile[0].id} 
+              userImage={newProfile.avatar}  
+              email={newProfile.email} 
+              firstName={newProfile.first_name} 
+              lastName={newProfile.last_name} 
+              id={newProfile.id} 
             />
             </GridItem >
             <GridItem xs={12} sm={8} md={9} item>
             <PickerContainer container>
               {loading ? pickerLoading : displayPicker}
             </PickerContainer>
-            </GridItem>)
-            }
+            </GridItem>
+            </Fragment>)}
           </GridContainer>
         </Fragment>
     );
@@ -115,7 +122,10 @@ const mapStateToProps = (state)=>({
 });
 
 const MapActionsToProp={
-    updateSchedules,
+    updateSchedule,
+    getSchedule,
+    getUsers,
+    updateUsers,
 }
 
 export default connect(mapStateToProps, MapActionsToProp)(Schedule);

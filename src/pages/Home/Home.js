@@ -22,7 +22,7 @@ const Home = ({ data:{ currentUsers, weekdays }, getUsers, updateUsers }) => {
         fetchUsers();
       }
       
-    }, [fetchUsers]);
+    }, [fetchUsers, currentUsers.length]);
 
     useEffect(() => {
         setShowProfiles(currentUsers);
@@ -32,7 +32,7 @@ const Home = ({ data:{ currentUsers, weekdays }, getUsers, updateUsers }) => {
         }
         
         return () => isMounted.current = false;
-    }, [isMounted, currentUsers, addUsers]);
+    }, [isMounted, currentUsers.length, addUsers, currentUsers]);
 
     
       const ourUsers = useMemo(() => {

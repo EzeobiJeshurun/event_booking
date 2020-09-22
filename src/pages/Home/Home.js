@@ -86,7 +86,7 @@ const Home = ({ data:{ currentUsers, weekdays }, getUsers, updateUsers }) => {
     return (
        <Fragment>
         <Navbar valueSearch={searchValue} onChangeSearch={handleFilter}/> 
-         <StyledGridContainer container spacing={0}>
+         <StyledGridContainer data-testid="home-page-container" container spacing={0}>
             {profiles.length > 0 ? users : (
               <StyledGridItem xs={12} item>
                 <NothingFound>

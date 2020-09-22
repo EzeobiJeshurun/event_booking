@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 const Card = ({ userImage, email, firstName, lastName, id}) => {
     return (
         <Fragment>
-         <StyledCard component={Link} to={`/schedule/${id}`} elevation={3} >
+         <StyledCard data-testid="card-container" component={Link} to={`/schedule/${id}`} elevation={3} >
            <StyledCardActionArea>
              <StyledCardMedia image={userImage} title="user profile image" />
              <StyledContent>
-              <StyledTypography>
+              <StyledTypography data-testid="card-email">
               {`${firstName} ${lastName}`}<br/>
                 <Hidden xsDown><Email>{`Email: ${email}`}</Email></Hidden>
                 <Hidden smUp><Email>{`${email}`}</Email></Hidden>

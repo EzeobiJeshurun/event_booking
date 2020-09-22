@@ -7,7 +7,7 @@ import { StyledToolbar } from './styles';
 const Navbar = ({ valueSearch, onChangeSearch }) => {
     return (
         <Fragment>
-            <AppBar>
+            <AppBar data-testid="appbar-container">
               <StyledToolbar><Input value={valueSearch} onChange={onChangeSearch}/></StyledToolbar>
             </AppBar>
         </Fragment>

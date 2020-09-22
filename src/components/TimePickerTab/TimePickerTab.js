@@ -34,18 +34,19 @@ const TimePickerTab = ({ text, availability, userId, time, schedule, handleUpdat
     };
 
     const tab = availability ? (
-       <PickerTab onClick={handleOpen} disabled>
-         <TextContainer>{text}</TextContainer> 
+       <PickerTab data-testid="tab-picker-container" onClick={handleOpen} disabled>
+         <TextContainer data-testid="tab-picker-text">{text}</TextContainer> 
        </PickerTab>
        ) : (
         <DisabledPickerTab/>
        )
 
-    // remember to disable PickerTab and use onclick to prevent selection of unavailable dates
+    
     return (
         <Fragment>
              {tab}
-            <Dialog 
+            <Dialog
+              data-testid="tab-picker-dialog" 
               open={open} 
               onClose={()=>{
                 handleClose()
@@ -68,7 +69,8 @@ const TimePickerTab = ({ text, availability, userId, time, schedule, handleUpdat
                 }}>
                 Cancel
                 </CancelButton>
-               <ConfirmButton 
+               <ConfirmButton
+                 data-testid="tab-picker-confirm-button" 
                  variant="outlined"
                  onClick={() => {
                     handleClose();
@@ -88,7 +90,7 @@ TimePickerTab.propTypes = {
   availability: PropTypes.bool,
   userId: PropTypes.number, 
   time: PropTypes.string, 
-  schedule: PropTypes.array, 
+  schedule: PropTypes.object, 
   handleUpdate: PropTypes.func, 
 };
  

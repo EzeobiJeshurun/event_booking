@@ -96,7 +96,7 @@ const Schedule = (props) => {
             <div>Meet us today {weekdays[now.weekday()]}, pick a time</div>
             <IconButton component={Link} to={'/'}><IconHome/></IconButton>
           </ScheduleTitle>
-          <GridContainer container>
+          <GridContainer data-testid="schedule-page-container" container>
           { newProfile.length < 1? pickerLoading :
             (<Fragment><GridItem xs={12} sm={4} md={3} item>
             <Card 
@@ -108,7 +108,7 @@ const Schedule = (props) => {
             />
             </GridItem >
             <GridItem xs={12} sm={8} md={9} item>
-            <PickerContainer container>
+            <PickerContainer data-testid="schedule-page-picker-container" container>
               {loading ? pickerLoading : displayPicker}
             </PickerContainer>
             </GridItem>

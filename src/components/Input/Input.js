@@ -6,7 +6,7 @@ const Input = ({...props}) => {
    
     return (
         <Fragment>
-            <StyledInput placeholder="Search" {...props}  startAdornment={<StyledSearchIcon />} />
+            <StyledInput data-testid="input-search" placeholder="Search" {...props}  startAdornment={<StyledSearchIcon />} />
         </Fragment>
     );
 }

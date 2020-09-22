@@ -6,9 +6,15 @@ import {
     UPDATE_SCHEDULE, 
     UPDATE_USERS,
     LOADING,
+    SNACKBAR_OPEN,
+    SNACKBAR_CLOSE,
     } from '../types';
 
 import axios from 'axios';
+
+export const snackbarOpen = () => (dispatch) => {
+    dispatch({type: SNACKBAR_OPEN});
+}
 
 //remember to change all routes
 export const getUsers = ()=>(dispatch)=>{
@@ -97,6 +103,7 @@ export const updateSchedule = (id,scheduleUpdate)=>(dispatch)=>{
             type: UPDATE_SCHEDULE,
             payload: scheduleUpdate,
         });
+        dispatch({type: SNACKBAR_OPEN});
     })
     .catch((err)=>{
         const checkNetwork = String(err.response);
@@ -115,3 +122,7 @@ export const updateSchedule = (id,scheduleUpdate)=>(dispatch)=>{
     });
 
 };
+
+export const snackbarClose = () => (dispatch) => {
+    dispatch({type: SNACKBAR_CLOSE});
+}

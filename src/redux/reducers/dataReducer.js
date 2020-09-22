@@ -9,6 +9,8 @@ import {
     UPDATE_SCHEDULE, 
     UPDATE_USERS,
     LOADING,
+    SNACKBAR_OPEN,
+    SNACKBAR_CLOSE,
     } from '../types';
 
 const initialState = {
@@ -18,6 +20,7 @@ const initialState = {
     networkError: false,
     schedule: {},
     loading: true,
+    snackbar: false,
     weekdays: [ "Sunday","Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday"]
 };
 
@@ -99,6 +102,17 @@ export default function (state= initialState, actions){
             loading: true,
           }    
         
+        case SNACKBAR_OPEN: 
+           return {
+            ...state,
+            snackbar: true,
+          } 
+
+        case SNACKBAR_CLOSE: 
+           return {
+            ...state,
+            snackbar: false,
+          }         
         default:   
             return state;
     }

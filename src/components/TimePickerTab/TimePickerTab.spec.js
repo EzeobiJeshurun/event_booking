@@ -8,10 +8,10 @@ describe("decribes TimePickerTab component", () => {
   it("Should open confirm TimePickerTab dialog", async () => {
     const { findByTestId } = renderer(
       <TimePickerTab
-        text={"8"} 
+        text={8} 
         availability={true} 
         userId={2} 
-        time={"8"} 
+        time={8} 
         schedule={{}}
       />
     );
@@ -27,10 +27,10 @@ describe("decribes TimePickerTab component", () => {
   it("Should render TimePickerTab", () => {
     const { getAllByTestId } = renderer(
       <TimePickerTab
-       text={"8"} 
+       text={8} 
        availability={true} 
        userId={2} 
-       time={"8"} 
+       time={8} 
        schedule={{}}
 
       />
@@ -43,10 +43,10 @@ describe("decribes TimePickerTab component", () => {
   it("Should render text in TimePickerTab", () => {
     const { getByText } = renderer(
       <TimePickerTab
-        text={"8"} 
+        text={8} 
         availability={true} 
         userId={2} 
-        time={"8"} 
+        time={8} 
         schedule={{}}
       />
     );

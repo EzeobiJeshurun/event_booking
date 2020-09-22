@@ -2,6 +2,8 @@ import React, {Fragment, useEffect, useState, useMemo, useCallback } from 'react
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import { 
   GridContainer, 
   GridItem, 
@@ -14,12 +16,24 @@ import Card from '../../components/Card';
 import TimePickerTab from '../../components/TimePickerTab';
 import dayjs from 'dayjs';
 import { connect } from 'react-redux';
-import { updateSchedule, getSchedule, getUsers, updateUsers } from '../../redux/actions/dataActions';
+import { 
+  updateSchedule, 
+  getSchedule, 
+  getUsers, 
+  updateUsers,
+  snackbarClose, 
+  } from '../../redux/actions/dataActions';
 import weekday from 'dayjs/plugin/weekday'
 dayjs.extend(weekday);
 
 const Schedule = (props) => {
-  const {data: { schedule, loading, currentUsers, weekdays }, updateSchedule, getSchedule, getUsers } = props;
+  const {
+    data: { schedule, loading, currentUsers, weekdays, snackbar }, 
+    updateSchedule, 
+    getSchedule, 
+    getUsers,
+    snackbarClose,
+     } = props;
   const match = props.match;
   const fetchUsers = getUsers;
   const addUsers = updateUsers;
@@ -28,6 +42,8 @@ const Schedule = (props) => {
   const [newProfile, setNewProfile] = useState([]);
   const update = useCallback(updateSchedule,[schedule]);
   const profileId = match.params.id;
+  const handleCloseSnackbar = snackbarClose;
+  const [open, setOpen] = useState(false);
   
   const fetchProfileSchedule = getSchedule;
 
@@ -58,17 +74,19 @@ const Schedule = (props) => {
   }, [ profileId, profile, fetchProfileSchedule]);
   
   useEffect(() => {
-    if(currentUsers.length < 1) {
+    if(currentUsers.length < 1 && currentUsers.length < 12) {
        fetchUsers();
     }
+
+    setOpen(snackbar);
   
-  }, [fetchUsers, currentUsers.length]);
+  }, [fetchUsers, currentUsers.length, snackbar]);
 
   useEffect(() => {
       if (schedule) {
         setUserSchedule(schedule);
       }
-  }, [schedule]);
+  }, [schedule, ]);
   
    const pickerLoading = (
      <TimePickerGrid xs={12} item>
@@ -112,6 +130,16 @@ const Schedule = (props) => {
               {loading ? pickerLoading : displayPicker}
             </PickerContainer>
             </GridItem>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+              <Alert 
+               onClose={handleCloseSnackbar} 
+               severity="success"
+               elevation={7}
+               variant="filled"
+               >
+                We have received your schedule and hope to speak with you today
+              </Alert>
+            </Snackbar>
             </Fragment>)}
           </GridContainer>
         </Fragment>
@@ -127,6 +155,7 @@ const MapActionsToProp={
     getSchedule,
     getUsers,
     updateUsers,
+    snackbarClose,
 }
 
 export default connect(mapStateToProps, MapActionsToProp)(Schedule);

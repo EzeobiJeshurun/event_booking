@@ -8,3 +8,5 @@ export const ERRORS = 'ERRORS';
 export const UPDATE_USERS = 'UPDATE_USERS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const  LOADING = ' LOADING';
+export const SNACKBAR_OPEN = 'SNACKBAR_OPEN';
+export const SNACKBAR_CLOSE = 'SNACKBAR_CLOSE';

@@ -86,10 +86,10 @@ const TimePickerTab = ({ text, availability, userId, time, schedule, handleUpdat
 }
  
 TimePickerTab.propTypes = {
-  text : PropTypes.string,
+  text : PropTypes.number,
   availability: PropTypes.bool,
   userId: PropTypes.number, 
-  time: PropTypes.string, 
+  time: PropTypes.number, 
   schedule: PropTypes.object, 
   handleUpdate: PropTypes.func, 
 };
